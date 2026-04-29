@@ -5,6 +5,8 @@ vim.o.relativenumber = true
 vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus"
 
+vim.diagnostic.config({ virtual_text = true })
+
 -- Sync clipboard between OS and Neovim. Schedule the setting after `UiEnter` because it can
 -- increase startup-time. Remove this option if you want your OS clipboard to remain independent.
 -- See `:help 'clipboard'` 
