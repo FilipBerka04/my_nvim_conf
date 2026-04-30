@@ -26,9 +26,6 @@ vim.o.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 
--- Show <tab> and trailing spaces
-vim.o.list = true
-
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s) See `:help 'confirm'`
 vim.o.confirm = true
@@ -59,26 +56,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.hl.on_yank()
   end,
 })
-
--- [[ Create user commands ]]
--- See `:h nvim_create_user_command()` and `:h user-commands`
-
--- Create a command `:GitBlameLine` that print the git blame for the current line
-vim.api.nvim_create_user_command("GitBlameLine", function()
-  local line_number = vim.fn.line(".") -- Get the current line number. See `:h line()`
-  local filename = vim.api.nvim_buf_get_name(0)
-  print(vim.system({ "git", "blame", "-L", line_number .. ",+1", filename }):wait().stdout)
-end, { desc = "Print the git blame for the current line" })
-
--- [[ Add optional packages ]]
--- Nvim comes bundled with a set of packages that are not enabled by
--- default. You can enable any of them by using the `:packadd` command.
-
--- For example, to add the "nohlsearch" package to automatically turn off search highlighting after
--- 'updatetime' and when going to insert mode
-vim.cmd("packadd! nohlsearch")
-
--- [[ Install plugins ]]
--- Nvim functionality can be extended by installing external plugins.
--- One way to do it is with a built-in plugin manager. See `:h vim.pack`.
--- vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
