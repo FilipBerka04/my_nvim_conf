@@ -5,6 +5,8 @@ vim.o.relativenumber = true
 vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus"
 
+vim.opt.hidden = false
+
 vim.diagnostic.config({ virtual_text = true })
 
 -- Sync clipboard between OS and Neovim. Schedule the setting after `UiEnter` because it can
@@ -34,6 +36,7 @@ vim.o.confirm = true
 
 -- Use <Esc> to exit terminal mode
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("n", "<leader>;", "A;<Esc>")
 
 -- Map <A-j>, <A-k>, <A-h>, <A-l> to navigate between windows in any modes
 vim.keymap.set({ "t", "i" }, "<A-h>", "<C-\\><C-n><C-w>h")

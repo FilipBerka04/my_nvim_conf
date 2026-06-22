@@ -17,9 +17,13 @@ return {
     config = function()
       vim.lsp.enable('lua_ls')
       vim.lsp.config('clangd', {
-        cmd = { "clangd-20" }
+        cmd = { "clangd",
+          "--fallback-style=webkit",
+          "--query-driver=**/*-gcc,**/*-g++"
+        }
       })
       vim.lsp.enable('clangd')
+      vim.lsp.enable('bashls')
 
 
       vim.keymap.set({ "n", "v" }, "<leader>f", function() vim.lsp.buf.format() end)
